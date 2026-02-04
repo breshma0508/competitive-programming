@@ -1,0 +1,108 @@
+School Trip
+There are 
+N
+N students in a school, and 
+X
+X of them have said they want to go on the school trip.
+
+The school buses can each carry 
+K
+K people, and every bus that is sent to the school trip must be completely full of students. No partially full buses are allowed. Hence, the number of students going on the trip must be divisible by 
+K
+K. There are sufficient number of school buses.
+
+As their teacher, you can convince some students to change their mind (i.e. either they did not want to go, and now they do; or vice versa). You want to change the minimum number of student's minds so that you can have a successful school trip. What is this minimum number?
+
+It is also allowed that no student goes to the school trip.
+
+Input Format
+The first line of input will contain a single integer 
+T
+T, denoting the number of test cases.
+The first and only line of each test case contains 
+3
+3 integers - 
+N
+N, 
+X
+X and 
+K
+K.
+Output Format
+For each test case, output on a new line the minimum number of students whose minds need to be changed.
+
+Constraints
+1
+≤
+T
+≤
+100
+1≤T≤100
+1
+≤
+X
+≤
+N
+≤
+100
+1≤X≤N≤100
+1
+≤
+K
+≤
+100
+1≤K≤100
+Sample 1:
+Input
+Output
+4
+5 4 2
+5 5 3
+5 1 3
+5 2 3
+0
+2
+1
+1
+Explanation:
+Test Case 1 : With 
+2
+2 buses, everyone, who wanted to, is able to go on the school trip.
+
+Test Case 2 : We need to convince 
+2
+2 people to not go, and then the other 
+3
+3 people end up going on the trip.
+
+
+
+Solution:: import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner s=new Scanner(System.in);
+		int t=s.nextInt();
+		while(t-->0){
+		    int n=s.nextInt();
+		    int x=s.nextInt();
+		    int k=s.nextInt();
+		    int rem=x%k,f=0;
+		    if(rem==0){
+		        f=0;
+		    }
+		    else if(k-rem<=n-x){
+		       f=Math.min(k-rem,rem);
+		    }
+		    else{
+		        f=rem;
+		    }
+		    System.out.println(f);
+		}
+
+	}
+}
