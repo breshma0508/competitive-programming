@@ -1,0 +1,219 @@
+AabBcCDd
+During Advitiya, the Coding Club is designing a digital banner made up of English letters.
+Each letter can appear in either uppercase or lowercase.
+
+You are given a string 
+S
+S of length 
+N
+N, denoting the current state of the banner.
+
+To maintain visual uniformity, the design team allows the following two types of transformations:
+
+Operation 
+1
+1: You may convert any uppercase letter to its corresponding lowercase letter.
+Formally, choose an index 
+i
+i (
+1
+≤
+i
+≤
+N
+1≤i≤N) such that 
+S
+i
+S 
+i
+​
+  is an uppercase letter, and convert it to the corresponding lowercase letter (so 
+A
+→
+a
+,
+B
+→
+b
+A→a,B→b, and so on.)
+This operation can be performed any number of times.
+Operation 
+2
+2: You may choose exactly one lowercase letter and convert all of its occurrences into another lowercase letter.
+For example, if 
+S
+=
+"aAbaCad"
+S="aAbaCad", converting all the occurrences of 
+’a’
+’a’ into 
+’e’
+’e’ will result in the string 
+"eAbeCed"
+"eAbeCed".
+This operation can be performed only once.
+The score of the banner is defined to be the maximum number of occurrences of any single lowercase letter present in it.
+For example, the score of 
+"aAbaCad"
+"aAbaCad" is 
+3
+3, because the character 
+’a’
+’a’ appears three times.
+
+Find the maximum possible score the banner can attain by performing the above operations.
+Note that the second type of operation can only be performed once, while the first type can be performed any number of times.
+
+Input Format
+The first line of input will contain a single integer 
+T
+T, denoting the number of test cases.
+Each test case consists of two lines of input.
+The first line of each test case contains a single integer 
+N
+N, representing the length of the banner string.
+The second line contains a string 
+S
+S of length 
+N
+N, denoting the initial banner string.
+Output Format
+For each test case, output a single integer denoting the maximum possible occurrences of any one lowercase letter after applying the operations.
+
+Constraints
+1
+≤
+T
+≤
+1000
+1≤T≤1000
+1
+≤
+N
+≤
+100
+1≤N≤100
+S
+S consists only of uppercase and lowercase English letters.
+Sample 1:
+Input
+Output
+3
+8
+AabBcCDd
+2
+ab
+3
+XXY
+4
+2
+3
+Explanation:
+Test case 
+1
+1: One optimal sequence of operations is as follows:
+
+Apply operation 
+1
+1 on index 
+1
+1, converting 
+A
+→
+a
+A→a. The string is now 
+"aabBcCDd"
+"aabBcCDd".
+Apply operation 
+1
+1 on index 
+3
+3, converting 
+B
+→
+b
+B→b. The string is now 
+"aabbcCDd"
+"aabbcCDd".
+Apply operation 
+2
+2 and choose to convert all occurrences of 
+b
+b to 
+a
+a. The string is now 
+"aaaacCDd"
+"aaaacCDd".
+There are now 
+4
+4 occurrences of 
+’a’
+’a’. It can be proved that this is optimal.
+
+Test case 
+2
+2: Apply operation 
+2
+2 to convert all occurrences of 
+a
+a into 
+b
+b. The string becomes 
+"bb"
+"bb", with a score of 
+2
+2.
+
+Test case 
+3
+3: The string can be converted into 
+"yyy"
+"yyy" by applying operation 
+1
+1 on all three indices, and then converting all occurrences of 
+x
+x into 
+y
+y, giving a score of 
+3
+3.
+
+Solution::
+  import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner s=new Scanner(System.in);
+		int t=s.nextInt();
+		while(t-->0){
+		    int n=s.nextInt();
+		    s.nextLine();
+		  String str=s.nextLine();
+		   HashMap<Character,Integer>mp=new HashMap<>();
+		   str=str.toLowerCase();
+		  for(int i=0;i<n;i++){
+		     char ch=str.charAt(i);
+		   mp.put(ch,mp.getOrDefault(ch,0)+1);
+		  }
+		  int m=0,x=0;
+		  for(int ch:mp.values()){
+		    if(ch>=m){
+		        x=m;
+		        m=ch;
+		    }
+		    else if(ch>x){
+		        x=ch;
+		    }
+		  }
+		  if(x>0){
+		      m+=x;
+		  }
+		  System.out.println(m);
+		}
+
+	}
+}
