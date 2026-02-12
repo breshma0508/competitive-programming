@@ -1,0 +1,84 @@
+Rectangled
+Chef loves rectangles and he wants to draw one with the largest area possible, but the problem is that his pen has only enough ink left to draw a total of 
+N
+N unit length of line.
+
+Help him find the largest area of a rectangle which he can draw if he wants to draw rectangles with integral sides only.
+
+Note that he does NOT need to finish all the ink.
+
+Input Format
+The first line of input will contain a single integer 
+T
+T, denoting the number of test cases.
+Each test case consists of a single integer 
+N
+N on a new line, denoting the ink left.
+Output Format
+For each test case, output on a new line the area of the largest rectangle Chef can draw.
+
+Constraints
+1
+≤
+T
+≤
+100
+1≤T≤100
+1
+≤
+N
+≤
+10
+3
+1≤N≤10 
+3
+ 
+Sample 1:
+Input
+Output
+3
+8
+1
+15
+4
+0
+12
+Explanation:
+Test case 1: The maximum area Chef can get by drawing a rectangle is 
+4
+4, by drawing a rectangle whose length and breadth are both 
+2
+2 units, using up all his ink left.
+
+Test case 2: There is not enough ink to draw any rectangle.
+
+Test case 3: The maximum area Chef can get by drawing a rectangle is 
+12
+12, by drawing a rectangle whose length is 
+4
+4 and breadth is 
+3
+3
+
+
+SOLUTION::
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner s=new Scanner(System.in);
+		int t=s.nextInt();
+		while(t-->0){
+		    int n=s.nextInt();
+		    int x=n/2;
+		    int d=x/2;
+		    System.out.println(d*(x-d));
+		}
+
+	}
+}
