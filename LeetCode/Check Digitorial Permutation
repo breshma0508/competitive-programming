@@ -1,0 +1,91 @@
+3848. Check Digitorial Permutation
+
+You are given an integer n.
+
+A number is called digitorial if the sum of the factorials of its digits is equal to the number itself.
+
+Determine whether any permutation of n (including the original order) forms a digitorial number.
+
+Return true if such a permutation exists, otherwise return false.
+
+Note:
+
+The factorial of a non-negative integer x, denoted as x!, is the product of all positive integers less than or equal to x, and 0! = 1.
+A permutation is a rearrangement of all the digits of a number that does not start with zero. Any arrangement starting with zero is invalid.
+ 
+
+Example 1:
+
+Input: n = 145
+
+Output: true
+
+Explanation:
+
+The number 145 itself is digitorial since 1! + 4! + 5! = 1 + 24 + 120 = 145. Thus, the answer is true.
+
+Example 2:
+
+Input: n = 10
+
+Output: false
+
+Explanation:​​​​​​​
+
+10 is not digitorial since 1! + 0! = 2 is not equal to 10, and the permutation "01" is invalid because it starts with zero.
+
+ 
+
+Constraints:
+
+1 <= n <= 109
+
+SOLUTION:::
+
+class Solution {
+    public boolean isDigitorialPermutation(int n) {
+        int p=n,sum=0;
+        while(n!=0){
+            int rem=n%10;
+            sum+=fact(rem);
+            n/=10;
+        }
+        if(sum==p){
+            return true;
+        }
+        else{
+            return permutation(p,sum);
+        }
+    }
+    public boolean permutation(int a,int b){
+        int f=a,s=b,la=0,lb=0;
+        int c[]=new int[10];
+        while(a!=0){
+            int rem=a%10;
+            c[rem]++;
+            a/=10;
+            la++;
+        }
+        while(b!=0){
+            int rem=b%10;
+            c[rem]--;
+            b/=10;
+            lb++;
+        }
+        if(la!=lb) return false;
+        for(int i:c){
+            if(i!=0){
+                return false;
+            }
+        }
+        return true;
+    }
+    public int fact(int a){
+        int sum=1;
+        for(int i=1;i<=a;i++){
+            sum*=i;
+        }
+        return sum;
+    }
+}
+
