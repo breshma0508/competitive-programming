@@ -1,0 +1,167 @@
+Invert and Equalize
+
+You are given a binary string S of length N. You can perform the following operation:
+
+Choose a continuous substring in which all characters are the same (all 0s or all 1s).
+
+Invert the entire substring (change every 0 to 1 and every 1 to 0).
+
+Example
+
+If
+S = 101111000
+
+You may choose the substring 1111 and invert it:
+
+101111000 → 100000000
+Task
+
+For each test case, determine the minimum number of operations required to make all characters of the string equal (all 0s or all 1s).
+
+Input Format
+
+The first line contains an integer T — the number of test cases.
+
+For each test case:
+
+The first line contains an integer N — the length of the string.
+
+The second line contains the binary string S.
+
+Output Format
+
+For each test case, print a single integer — the minimum number of operations required to make all characters of the string equal.
+
+Constraints
+
+1
+≤
+𝑇
+≤
+10
+4
+1≤T≤10
+4
+
+1
+≤
+𝑁
+≤
+10
+5
+1≤N≤10
+5
+
+∣
+𝑆
+∣
+=
+𝑁
+∣S∣=N
+
+𝑆
+𝑖
+∈
+{
+0
+,
+1
+}
+S
+i
+	​
+
+∈{0,1}
+
+The sum of N over all test cases does not exceed 
+2
+×
+10
+5
+2×10
+5
+
+Sample Input
+3
+9
+101111000
+4
+0110
+1
+1
+Sample Output
+2
+1
+0
+Explanation
+Test Case 1
+
+101111000
+
+Operation 1: Invert 1111
+101111000 → 100000000
+
+Operation 2: Invert the leading 1
+100000000 → 000000000
+
+Minimum operations = 2
+
+Test Case 2
+
+0110
+
+Invert 11
+0110 → 0000
+
+Minimum operations = 1
+
+Test Case 3
+
+1
+
+The string already contains identical characters.
+
+Minimum operations = 0
+
+SOLUTION::
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner s=new Scanner(System.in);
+		int t=s.nextInt();
+		while(t-->0){
+		    int n=s.nextInt();
+		    s.nextLine();
+		   String str=s.nextLine();
+		   int p=0,q=0,c1=0,c0=0;
+		   for(int i=0;i<n;i++){
+		     char ch=str.charAt(i);
+		     if(ch=='1' && p==0){
+		         c1++;
+		         p=1;
+		         q=0;
+		     }
+		   /*  else if(ch=='1' && p==1){
+		        q=0;
+		        continue;
+		   } */
+		     else if(ch=='0' && q==0){
+		         c0++;
+		         q=1;
+		         p=0;
+		     }
+		    /* else if(ch=='0' && q==1){
+		         p=0;
+		         continue;
+		     }*/
+		   }
+		   System.out.println(Math.min(c1,c0));
+		}
+
+	}
+}
