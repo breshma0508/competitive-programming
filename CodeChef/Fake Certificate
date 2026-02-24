@@ -1,0 +1,122 @@
+Fake Certificate
+
+Alice’s school attendance is represented by a binary string S of length N.
+
+If S[i] = 1, Alice was present on day i.
+
+If S[i] = 0, Alice was absent on day i.
+
+Alice wants to improve her attendance record. She can perform at most one operation:
+
+Choose a contiguous substring consisting only of 0s.
+
+Convert all those 0s into 1s (as if she submitted a medical certificate).
+
+A substring is a continuous segment of a string.
+For example, "aca" is a substring of "abacaba", but "aaa" is not.
+
+Your task is to determine the maximum number of days Alice can be marked present after performing at most one operation.
+
+Input Format
+
+The first line contains an integer T — the number of test cases.
+
+For each test case:
+
+The first line contains an integer N — the length of the string.
+
+The second line contains the binary string S.
+
+Output Format
+
+For each test case, print a single integer — the maximum number of days Alice can be marked present after at most one operation.
+
+Constraints
+
+1 ≤ T ≤ 10^4
+
+1 ≤ N ≤ 2 × 10^5
+
+S is a binary string.
+
+The sum of N over all test cases does not exceed 2 × 10^5.
+
+Example
+Input
+4
+3
+111
+3
+000
+6
+010010
+6
+001001
+Output
+3
+3
+4
+4
+Explanation
+Test Case 1
+
+Alice was present every day. No operation is needed.
+Answer: 3
+
+Test Case 2
+
+Alice was absent every day. She can convert the entire string.
+Answer: 3
+
+Test Case 3
+
+Zero-only substrings are:
+
+[1,1]
+
+[3,4]
+
+[6,6]
+
+Choosing [3,4] results in 011110.
+Answer: 4
+
+Test Case 4
+
+Choosing the optimal zero-only substring results in 4 present days.
+
+
+SOLUTION::
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		Scanner s=new Scanner(System.in);
+		int t=s.nextInt();
+		while(t-->0){
+		    int n=s.nextInt();
+		    s.nextLine();
+		   String str=s.nextLine();
+		   int m=-1,c0=0,c1=0;
+		   for(int i=0;i<n;i++){
+		   char ch=str.charAt(i);
+		   if(ch=='1'){
+		       c1++;
+		       c0=0;
+		   }
+		   else if(ch=='0'){
+		       c0++;
+		   }
+		     m=Math.max(m,c0);
+		   }
+		   System.out.println(m+c1);
+		}
+
+	}
+}
