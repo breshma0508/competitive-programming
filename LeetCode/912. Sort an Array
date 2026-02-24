@@ -1,0 +1,63 @@
+912. Sort an Array
+
+Given an array of integers nums, sort the array in ascending order and return it.
+You must solve the problem without using any built-in functions in O(nlog(n)) time complexity and with the smallest space complexity possible.
+
+Example 1:
+Input: nums = [5,2,3,1]
+Output: [1,2,3,5]
+
+Explanation: After sorting the array, the positions of some numbers are not changed (for example, 2 and 3), while the positions of other numbers are changed (for example, 1 and 5).
+
+Example 2:
+Input: nums = [5,1,1,2,0,0]
+Output: [0,0,1,1,2,5]
+
+Explanation: Note that the values of nums are not necessarily unique.
+ 
+Constraints:
+
+1 <= nums.length <= 5 * 104
+-5 * 104 <= nums[i] <= 5 * 104
+
+
+SOLUTION:::
+
+class Solution {
+    public void mergesort(int nums[],int mid,int l,int r){
+        int h=l,c=mid+1,k=0;
+        int b[]=new int[nums.length];
+        while(h<=mid && c<=r){
+           if(nums[h]<=nums[c]){
+             b[k++]=nums[h];
+             h++;
+           }
+           else{
+            b[k++]=nums[c];
+             c++;
+           }
+        }
+        while(h<=mid){
+            b[k++]=nums[h++];
+        }
+        while(c<=r){
+            b[k++]=nums[c++];
+        }
+        for(int i=0;i<k;i++){
+            nums[l+i]=b[i];
+        }
+    }
+    public void merge(int nums[],int l,int r){
+        if(l<r){
+            int mid=l+(r-l)/2;
+            merge(nums,l,mid);
+            merge(nums,mid+1,r);
+            mergesort(nums,mid,l,r);
+        }
+    }
+    public int[] sortArray(int[] nums) {
+        int l=0,r=nums.length-1;
+        merge(nums,l,r);
+        return nums;
+    }
+}
