@@ -1,0 +1,63 @@
+🧮 Min And Operations – Java Solution
+📌 Problem Summary
+
+Given a set:
+
+S = {0, 1, 2, ..., N}
+
+Where N is even, repeatedly:
+
+Remove two elements X and Y
+
+Add max(X, Y) to score
+
+Insert (X & Y) if not already present
+
+Continue until only one element remains.
+
+We must compute the minimum possible final score.
+
+💡 Key Formula
+
+For every test case:
+
+Minimum Score = N × (N + 2) / 4
+
+Since N is even, the result is always an integer.
+
+🚀 Java Implementation
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+public class MinAndOperations {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder output = new StringBuilder();
+
+        int T = Integer.parseInt(br.readLine().trim());
+
+        while (T-- > 0) {
+            long N = Long.parseLong(br.readLine().trim());
+
+            // Using the derived formula
+            long result = (N * (N + 2)) / 4;
+
+            output.append(result).append("\n");
+        }
+
+        System.out.print(output);
+    }
+}
+⏱ Complexity
+
+Time Complexity: O(T)
+
+Space Complexity: O(1)
+
+Constraint-safe for:
+
+1 ≤ T ≤ 100
+
+1 ≤ N ≤ 5000
