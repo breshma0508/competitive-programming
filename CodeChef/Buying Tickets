@@ -1,0 +1,88 @@
+Buying Tickets
+
+Chef wants to buy tickets for a sports game for K people (including himself).
+
+The stadium has N seats, numbered from 1 to N.
+The cost of the i-th seat is Aᵢ rupees.
+
+However, some seats have already been purchased. You are given a binary string S where:
+
+Sᵢ = 1 → the i-th seat is already sold
+
+Sᵢ = 0 → the i-th seat is still available
+
+Chef can buy any available seats (they do not need to be consecutive).
+
+Your task is to determine the minimum total cost for Chef to buy exactly K available seats.
+
+If it is not possible to buy K seats (because fewer than K seats are available), print -1.
+
+Input Format
+
+The first line contains an integer T — number of test cases.
+
+For each test case:
+
+The first line contains two integers N and K — total seats and required seats.
+
+The second line contains N integers: A₁, A₂, …, Aₙ (cost of each seat).
+
+The third line contains a binary string S representing seat availability.
+
+Output Format
+
+For each test case, print the minimum cost required to buy K seats.
+If it is impossible, print -1.
+
+Key Idea
+
+Consider only seats where Sᵢ = 0 (available).
+
+From those seats, choose K seats with the smallest costs.
+
+SOLUTION:::
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner s=new Scanner(System.in);
+		int t=s.nextInt();
+		while(t-->0){
+		    int n=s.nextInt();
+		    int k=s.nextInt();
+		    int a[]=new int[n];
+		    for(int i=0;i<n;i++){
+		        a[i]=s.nextInt();
+		    }
+		   s.nextLine();
+		   String str=s.nextLine();
+		   int sum=0;
+		   ArrayList<Integer>mp=new
+		       ArrayList<>();
+		   for(int i=0;i<n;i++){
+		     char ch=str.charAt(i);
+		     if(ch=='0'){
+		       mp.add(a[i]);
+		     }
+		   }
+		   Collections.sort(mp);
+		   if(mp.size()>=k){
+	       for(int i=0;i<k;i++){
+	          sum+=mp.get(i);
+	       }
+	       System.out.println(sum);
+		   }
+		   else{
+		       System.out.println("-1");
+		   }
+		}
+	}
+}
+
+
+If available seats < K, output -1.
