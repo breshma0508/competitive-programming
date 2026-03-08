@@ -1,0 +1,90 @@
+CHEFLAND LIBRARAY
+In Chefland Library, there is a penalty system for returning books late.
+
+Rules for penalties:
+
+If a book is returned late by d days, the penalty for that book is d points.
+
+If multiple books are returned on the same day, only the largest penalty among those books is counted for that day.
+
+Chef borrowed N books. For the i-th book:
+
+It was returned i days late.
+
+It was returned on day Aᵢ.
+
+Your task is to calculate the total penalty points Chef must pay.
+
+Input Format
+
+The first line contains an integer T — the number of test cases.
+
+For each test case:
+
+The first line contains an integer N — the number of books.
+
+The second line contains N space-separated integers A₁, A₂, …, Aₙ, where Aᵢ represents the day the i-th book was returned.
+
+Output Format
+
+For each test case, print one integer — the total penalty points Chef must pay.
+
+Explanation of Sample Test Case 3
+
+Input:
+
+N = 4
+A = [1, 1, 2, 1]
+
+Books:
+
+Book 1 → returned on day 1, late by 1 day
+
+Book 2 → returned on day 1, late by 2 days
+
+Book 3 → returned on day 2, late by 3 days
+
+Book 4 → returned on day 1, late by 4 days
+
+Grouping by return day:
+
+Day 1: books with penalties 1, 2, 4 → take the maximum = 4
+
+Day 2: book with penalty 3
+
+Total penalty = 4 + 3 = 7
+
+SOLUTION::::
+
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner s=new Scanner(System.in);
+		int t=s.nextInt();
+		while(t-->0){
+		    int n=s.nextInt();
+		    int a[]=new int[n];
+		    int m=-1;
+		    for(int i=0;i<n;i++){
+		        a[i]=s.nextInt();
+		        m=Math.max(m,a[i]);
+		    }
+		    int b[]=new int[m+1];
+		    for(int i=0;i<n;i++){
+		        b[a[i]]=i+1;
+		    }
+		    int k=0;
+		    for(int i=0;i<=m;i++){
+		        k+=b[i];
+		    }
+		    System.out.println(k);
+		}
+
+	}
+}
