@@ -1,0 +1,111 @@
+Vacation Excitement (Rephrased)
+
+Chef is planning a vacation with his friends in March, and he is very excited about it.
+
+The vacation will start on the X-th day of March.
+
+Chef’s excitement level on March 1st is Y.
+Every day that passes, his excitement increases by 1.
+
+So his excitement will be:
+
+Y on March 1
+
+Y + 1 on March 2
+
+Y + 2 on March 3
+
+and it continues increasing like this every day.
+
+Your task is to find Chef’s excitement level on the day his vacation begins.
+
+Input
+
+The input contains two integers separated by a space:
+
+X – the day in March when the vacation starts
+
+Y – Chef’s excitement level on March 1st
+
+Output
+
+Print a single integer representing Chef’s excitement level on the day the vacation begins.
+
+Constraints
+
+1
+≤
+𝑋
+≤
+31
+1≤X≤31
+
+1
+≤
+𝑌
+≤
+10
+1≤Y≤10
+
+Example 1
+
+Input
+
+3 5
+
+Output
+
+7
+
+Explanation
+
+Chef’s excitement:
+
+March 1 → 5
+
+March 2 → 6
+
+March 3 → 7
+
+The vacation starts on March 3, so the excitement level is 7.
+
+Example 2
+
+Input
+
+1 8
+
+Output
+
+8
+
+Explanation
+
+The vacation starts on March 1, so the excitement level remains 8.
+
+Example 3
+
+Input
+
+27 6
+
+Output
+
+32
+
+Explanation
+
+Chef’s excitement increases by 1 every day.
+On March 27, his excitement level becomes 32.
+
+
+solution":::
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int x,y;
+	cin>>x>>y;
+	cout<<(y+(x-1));
+}
