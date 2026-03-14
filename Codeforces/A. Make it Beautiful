@@ -1,0 +1,122 @@
+A. Make it Beautiful
+
+An array a
+ is called ugly if it contains at least one element which is equal to the sum of all elements before it. If the array is not ugly, it is beautiful.
+
+For example:
+
+the array [6,3,9,6]
+ is ugly: the element 9
+ is equal to 6+3
+;
+the array [5,5,7]
+ is ugly: the element 5
+ (the second one) is equal to 5
+;
+the array [8,4,10,14]
+ is beautiful: 8≠0
+, 4≠8
+, 10≠8+4
+, 14≠8+4+10
+, so there is no element which is equal to the sum of all elements before it.
+You are given an array a
+ such that 1≤a1≤a2≤⋯≤an≤100
+. You have to reorder the elements of a
+ in such a way that the resulting array is beautiful. Note that you are not allowed to insert new elements or erase existing ones, you can only change the order of elements of a
+. You are allowed to keep the array a
+ unchanged, if it is beautiful.
+
+Input
+The first line contains one integer t
+ (1≤t≤2000
+) — the number of test cases.
+
+Each test case consists of two lines. The first line contains one integer n
+ (2≤n≤50
+). The second line contains n
+ integers a1,a2,…,an
+ (1≤a1≤a2≤⋯≤an≤100
+).
+
+Output
+For each test case, print the answer as follows:
+
+if it is impossible to reorder the elements of a
+ in such a way that it becomes beautiful, print NO;
+otherwise, in the first line, print YES. In the second line, print n
+ integers — any beautiful array which can be obtained from a
+ by reordering its elements. If there are multiple such arrays, print any of them.
+Example
+InputCopy
+4
+4
+3 3 6 6
+2
+10 10
+5
+1 2 3 4 5
+3
+1 4 4
+OutputCopy
+YES
+3 6 3 6
+NO
+YES
+2 4 1 5 3
+YES
+1 4 4
+
+
+
+SOKUTION :::
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+
+        while (t-- > 0) {
+            int n = sc.nextInt();
+            int[] a = new int[n];
+            for (int i = 0; i < n; i++) {
+                a[i] = sc.nextInt();
+            }
+
+            // Compute total sum
+            int sum = 0;
+            for (int x : a) sum += x;
+
+            // Check if all elements are equal
+            boolean allEqual = true;
+            for (int i = 1; i < n; i++) {
+                if (a[i] != a[0]) {
+                    allEqual = false;
+                    break;
+                }
+            }
+            if (allEqual) {
+                System.out.println("NO");
+                continue;
+            }
+
+            // Sort ascending
+            Arrays.sort(a);
+
+            // Move the largest element to the front to avoid prefix sum conflicts
+            int temp = a[n - 1];
+            for (int i = n - 1; i > 0; i--) {
+                a[i] = a[i - 1];
+            }
+            a[0] = temp;
+
+            System.out.println("YES");
+            for (int x : a) {
+                System.out.print(x + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
