@@ -1,0 +1,67 @@
+Maximum Score from Binary Array
+🧩 Problem
+
+Given a binary array A of even length N, you must perform N/2 operations:
+
+Choose an index i such that 1 ≤ i < size of A
+Add |A[i] - A[i+1]| to score
+Remove both elements from the array
+
+Return the maximum possible score.
+
+💡 Approach
+🔍 Key Idea
+|A[i] - A[i+1]| = 1 if elements are different
+|A[i] - A[i+1]| = 0 if elements are same
+
+👉 So, we need to maximize the number of (0,1) or (1,0) pairs
+
+🧠 Observation
+
+Each valid pair consumes:
+
+one 0
+one 1
+
+Thus, the maximum number of such pairs is:
+
+min(count of 0s, count of 1s)
+✅ Algorithm
+Count number of 0s and 1s in the array
+Return min(zeros, ones)
+🚀 Java Implementation
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+
+        while (t-- > 0) {
+            int n = sc.nextInt();
+            int zeros = 0, ones = 0;
+
+            for (int i = 0; i < n; i++) {
+                int x = sc.nextInt();
+                if (x == 0) zeros++;
+                else ones++;
+            }
+
+            System.out.println(Math.min(zeros, ones));
+        }
+
+        sc.close();
+    }
+}
+⏱ Complexity
+Time: O(N) per test case
+Space: O(1)
+📊 Example
+Input:
+1
+4
+1 1 0 0
+
+Output:
+2
+🔥 🚀
