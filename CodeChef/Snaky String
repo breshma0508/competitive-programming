@@ -1,0 +1,96 @@
+🐍 Snaky Strings
+📌 Problem Statement
+
+Chef calls a string snaky if it either starts or ends with the letter 's'.
+
+You are given a string A of length 4, consisting only of lowercase English letters.
+Determine whether the string is snaky or not.
+
+📥 Input Format
+A single line containing a string A of length 4.
+📤 Output Format
+Print "Yes" if the string is snaky.
+Otherwise, print "No".
+
+✅ Output is case-insensitive:
+Yes, YES, yes, yEs are all accepted.
+
+⚙️ Constraints
+Length of A = 4
+Each character is a lowercase English letter (a to z)
+🧠 Logic
+
+A string is considered snaky if:
+
+The first character is 's'
+OR
+The last character is 's'
+🧪 Examples
+Example 1
+
+Input
+
+hiss
+
+Output
+
+Yes
+
+Explanation
+The string ends with 's', so it is snaky.
+
+Example 2
+
+Input
+
+rock
+
+Output
+
+No
+
+Explanation
+The string neither starts nor ends with 's'.
+
+Example 3
+
+Input
+
+snow
+
+Output
+
+Yes
+
+Explanation
+The string starts with 's'.
+
+💻 Java Solution
+import java.util.*;
+
+class Codechef
+{
+    public static void main (String[] args) throws java.lang.Exception
+    {
+        Scanner s = new Scanner(System.in);
+        String str = s.nextLine();
+
+        if (str.startsWith("s") || str.endsWith("s")) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+        }
+    }
+}
+🚀 Alternative Approach
+
+Using character indexing:
+
+if (str.charAt(0) == 's' || str.charAt(3) == 's')
+📊 Complexity
+Time Complexity: O(1)
+Space Complexity: O(1)
+🙌 Summary
+Check first and last characters
+If either is 's', print "Yes"
+Otherwise, print "No"
