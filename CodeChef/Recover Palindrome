@@ -1,0 +1,51 @@
+🧩 Recover Palindrome
+💡 Idea
+A palindrome is uniquely determined only if every position is forced.
+Check:
+
+For every pair (i, n-i-1):
+If both are '?' → ❌ multiple choices → NO
+If n is odd:
+If middle is '?' → ❌ multiple choices → NO
+
+Otherwise → ✅ YES
+
+✅ Java Solution
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+
+        while (t-- > 0) {
+            int n = sc.nextInt();
+            String s = sc.next();
+
+            boolean unique = true;
+
+            // Check mirrored pairs
+            for (int i = 0; i < n / 2; i++) {
+                if (s.charAt(i) == '?' && s.charAt(n - i - 1) == '?') {
+                    unique = false;
+                    break;
+                }
+            }
+
+            // Check middle character (for odd length)
+            if (n % 2 == 1 && s.charAt(n / 2) == '?') {
+                unique = false;
+            }
+
+            System.out.println(unique ? "YES" : "NO");
+        }
+
+        sc.close();
+    }
+}
+🧠 Summary
+?? pair → NO
+middle ? (odd length) → NO
+otherwise → YES
+
+If you want, I can also give a one-liner logic trick or convert to C++ / Python.
