@@ -1,0 +1,171 @@
+Chef Builds Subsets
+Chef has a list of unique integers 
+inputNumbers and wants to explore all possible subsets of this list, including the empty subset. Chef aims to generate the complete power set without any duplicates, regardless of the order in which the subsets appear.
+Help Chef by writing a function that returns all these subsets for the given list of integers.
+
+Function Declaration
+Function Name
+f
+i
+n
+d
+S
+u
+b
+s
+e
+t
+s
+findSubsets - This function generates all possible subsets (the power set) of a given list of integers.
+
+Parameters
+i
+n
+p
+u
+t
+N
+u
+m
+b
+e
+r
+s
+inputNumbers: A reference to an array containing the input integers. The array may be empty and contains distinct integers.
+Return Value
+Returns an array of arrays representing all unique subsets of the input numbers.
+Each inner array is a subset of the input.
+The output includes the empty subset and all other subsets in any order.
+Constraints
+1
+≤
+T
+≤
+10
+5
+1≤T≤10 
+5
+ 
+1
+≤
+N
+≤
+10
+1≤N≤10
+−
+10
+≤
+inputNumbers
+[
+i
+]
+≤
+10
+−10≤inputNumbers[i]≤10
+All elements in 
+i
+n
+p
+u
+t
+N
+u
+m
+b
+e
+r
+s
+inputNumbers are unique.
+Input Format
+The first line contains a single integer 
+T
+T — the number of test cases.
+For each test case:
+The first line contains an integer 
+N
+N — the size of Chef's number array.
+The second line contains 
+N
+N space-separated integers representing Chef's number array.
+Output Format
+For each test case, print all subsets of the given array.
+Each subset should be printed on a separate line with its elements separated by spaces.
+Print the empty subset as an empty brackets.
+Sample 1:
+Input
+Output
+2
+2
+4 7
+4
+-1 0 1 2
+[]
+[4]
+[7]
+[4 7]
+[]
+[-1]
+[0]
+[-1 0]
+[1]
+[-1 1]
+[0 1]
+[-1 0 1]
+[2]
+[-1 2]
+[0 2]
+[-1 0 2]
+[1 2]
+[-1 1 2]
+[0 1 2]
+[-1 0 1 2]
+Explanation:
+For the first test case with elements [4, 7], the complete power set is generated.
+This includes:
+
+The empty subset: []
+All single-element subsets: [4], [7]
+The full subset containing all elements: [4, 7]
+Together forming the full set of combinations:
+[], [4], [7], [4,7]
+For the second test case with elements [-1, 0, 1, 2], every possible subset is generated:
+
+The empty subset
+All 4 single-element subsets
+All 6 two-element combinations
+All 4 three-element combinations
+The full four-element subset: [-1, 0, 1, 2]
+Ensuring the output includes all 2? = 16 subsets, covering the power set completely.
+
+
+SOLUTION:::
+
+static List<List<Integer>> findSubsets(int[] inputNumbers) {
+
+    List<List<Integer>> answer = new ArrayList<>();
+
+    List<Integer> current = new ArrayList<>();
+
+    helper(0, inputNumbers, current, answer);
+
+    return answer;
+}
+
+static void helper(int index,
+                   int[] nums,
+                   List<Integer> current,
+                   List<List<Integer>> answer) {
+
+    if (index == nums.length) {
+        answer.add(new ArrayList<>(current));
+        return;
+    }
+
+    current.add(nums[index]);
+
+    helper(index + 1, nums, current, answer);
+
+    current.remove(current.size() - 1);
+
+    helper(index + 1, nums, current, answer);
+}
