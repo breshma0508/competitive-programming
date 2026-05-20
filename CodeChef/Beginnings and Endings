@@ -1,0 +1,300 @@
+Beginnings and Endings
+An array 
+A
+A of length 
+N
+N is called good if its first element is equal to its last element, i.e. if 
+A
+1
+=
+A
+N
+A 
+1
+​
+ =A 
+N
+​
+  (using 
+1
+1-indexing).
+
+You are given an array 
+A
+A of length 
+N
+N.
+In one move, you can swap two adjacent elements of 
+A
+A, i.e. choose an index 
+i
+i (
+1
+≤
+i
+<
+N
+1≤i<N) and 
+swap
+(
+A
+i
+,
+A
+i
++
+1
+)
+swap(A 
+i
+​
+ ,A 
+i+1
+​
+ ).
+
+Find the minimum number of moves needed to make the array 
+A
+A good.
+
+If it's impossible to make 
+A
+A good no matter what, print 
+−
+1
+−1 instead.
+
+Input Format
+The first line of input will contain a single integer 
+T
+T, denoting the number of test cases.
+Each test case consists of two lines of input.
+The first line of each test case contains a single integer 
+N
+N — the length of the array.
+The second line contains 
+N
+N space-separated integers 
+A
+1
+,
+…
+,
+A
+N
+A 
+1
+​
+ ,…,A 
+N
+​
+ .
+Output Format
+For each test case, output on a new line the answer:
+
+−
+1
+−1, if it's not possible to make the array good by swapping adjacent elements.
+The minimum number of adjacent swaps needed to make the array good otherwise.
+Constraints
+1
+≤
+T
+≤
+100
+1≤T≤100
+2
+≤
+N
+≤
+100
+2≤N≤100
+1
+≤
+A
+i
+≤
+100
+1≤A 
+i
+​
+ ≤100
+Sample 1:
+Input
+Output
+4
+4
+1 2 3 1
+4
+1 2 3 4
+6
+1 2 3 1 2 3
+7
+5 6 7 8 8 2 4
+0
+-1
+2
+5
+Explanation:
+Test case 
+1
+1: The first and last elements are already equal. No operations are needed, the answer is 
+0
+0.
+
+Test case 
+2
+2: No matter how many swaps are made, it's impossible to convert 
+[
+1
+,
+2
+,
+3
+,
+4
+]
+[1,2,3,4] to an array with equal first and last elements. So, the answer is 
+−
+1
+−1.
+
+Test case 
+3
+3: Starting from 
+[
+1
+,
+2
+,
+3
+,
+1
+,
+2
+,
+3
+]
+[1,2,3,1,2,3], one optimal sequence of operations is:
+
+Choose 
+i
+=
+1
+i=1, swapping 
+A
+1
+A 
+1
+​
+  and 
+A
+2
+A 
+2
+​
+ . The array becomes 
+[
+2
+,
+1
+,
+3
+,
+1
+,
+2
+,
+3
+]
+[2,1,3,1,2,3].
+Choose 
+i
+=
+5
+i=5, swapping 
+A
+5
+A 
+5
+​
+  and 
+A
+6
+A 
+6
+​
+ . The array becomes 
+[
+2
+,
+1
+,
+3
+,
+1
+,
+3
+,
+2
+]
+[2,1,3,1,3,2].
+The first and last elements are now equal.
+It can be verified that using fewer than two swaps is not enough; so the answer is 
+
+SOLUTION:::
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner s=new Scanner(System.in);
+		int t=s.nextInt();
+		while(t-->0){
+		    int n=s.nextInt();
+		    int a[]=new int[n];
+		    for(int i=0;i<n;i++){
+		        a[i]=s.nextInt();
+		    }
+		    int b[]=new int[101];
+		    for(int i=0;i<n;i++){
+		        b[a[i]]++;
+		    }
+		   int m=Integer.MAX_VALUE;
+		    for(int i=0;i<101;i++){
+		        if(b[i]>1){
+		     int v=isc(i,a,n);
+		          m=Math.min(m,v);
+		        }
+		    }
+		  if(m==Integer.MAX_VALUE){
+		      System.out.println("-1");
+		  }
+		  else{
+		     System.out.println(m);
+		  }
+		}
+	}
+	public static int isc(int b,int a[],int n){
+ 	 int first = -1;
+int last = -1;
+
+for(int i=0;i<n;i++){
+
+if(a[i]==b){
+
+if(first==-1){
+first=i;
+}
+
+last=i;
+}
+}
+
+return first + (n-1-last);
+}
+}
