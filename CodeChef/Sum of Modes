@@ -1,0 +1,64 @@
+/*
+Sum of Modes
+
+For a binary string S, f(T) is the number of modes of substring T.
+
+We need to compute:
+Sum of f(S[L..R]) over all substrings.
+
+Observation:
+- If count(0) == count(1) => f = 2
+- Else f = 1
+
+So:
+Answer = total substrings + number of balanced substrings
+Balanced substring => equal number of 0 and 1
+
+We convert:
+0 -> -1
+1 -> +1
+
+Then balanced substrings = number of subarrays with sum = 0
+This is counted using prefix frequency map.
+*/
+
+import java.util.*;
+import java.io.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+
+        Scanner s = new Scanner(System.in);
+        int t = s.nextInt();
+
+        while (t-- > 0) {
+
+            int n = s.nextInt();
+            String str = s.next();
+
+            HashMap<Integer, Long> mp = new HashMap<>();
+
+            long pref = 0;
+            long balanced = 0;
+
+            mp.put(0, 1L);
+
+            for (int i = 0; i < n; i++) {
+
+                if (str.charAt(i) == '0') pref -= 1;
+                else pref += 1;
+
+                balanced += mp.getOrDefault(pref, 0L);
+
+                mp.put(pref, mp.getOrDefault(pref, 0L) + 1);
+            }
+
+            long totalSubarrays = (long) n * (n + 1) / 2;
+
+            long answer = totalSubarrays + balanced;
+
+            System.out.println(answer);
+        }
+    }
+}
