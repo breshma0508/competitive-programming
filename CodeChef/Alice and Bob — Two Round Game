@@ -1,0 +1,72 @@
+/*
+Problem: Alice and Bob — Two Round Game
+
+Alice and Bob are playing a game with two rounds of scoring.
+
+Each player has:
+- Primary score
+- Secondary score
+
+Alice's scores: X (primary), Y (secondary)
+Bob's scores: A (primary), B (secondary)
+
+Winner Rules:
+1. The player with the strictly higher primary score wins.
+2. If primary scores are equal, the player with the strictly higher secondary score wins.
+3. If both primary and secondary scores are equal, Alice wins.
+
+Input:
+A single line containing four integers: X Y A B
+
+Output:
+Print "Alice" if Alice wins, otherwise "Bob"
+
+Constraints:
+1 ≤ X, Y, A, B ≤ 10
+
+Sample Input 1:
+5 3 4 7
+Sample Output 1:
+Alice
+
+Sample Input 2:
+3 4 3 8
+Sample Output 2:
+Bob
+
+Sample Input 3:
+6 2 6 2
+Sample Output 3:
+Alice
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int X, Y, A, B;
+    cin >> X >> Y >> A >> B;
+
+    if (X > A) {
+        cout << "Alice";
+    }
+    else if (A > X) {
+        cout << "Bob";
+    }
+    else {
+        if (Y > B) {
+            cout << "Alice";
+        }
+        else if (B > Y) {
+            cout << "Bob";
+        }
+        else {
+            cout << "Alice"; // tie case
+        }
+    }
+
+    return 0;
+}
