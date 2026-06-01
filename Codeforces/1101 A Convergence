@@ -113,3 +113,48 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+
+JAVA CODE:::
+
+
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int t = sc.nextInt();
+
+        while (t-- > 0) {
+            int n = sc.nextInt();
+
+            TreeMap<Integer, Integer> map = new TreeMap<>();
+
+            for (int i = 0; i < n; i++) {
+                int x = sc.nextInt();
+                map.put(x, map.getOrDefault(x, 0) + 1);
+            }
+
+            int ans = n;
+            int less = 0;
+
+            for (int freq : map.values()) {
+                int greater = n - less - freq;
+
+                ans = Math.min(ans, Math.max(less, greater));
+
+                less += freq;
+            }
+
+            System.out.println(ans);
+        }
+
+        sc.close();
+    }
+}
