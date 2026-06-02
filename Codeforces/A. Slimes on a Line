@@ -3,7 +3,7 @@ A. Slimes on a Line
 There are n
  slimes on a line, where slime i
  is at position ai
- on the line. You will perform the following operation some number of times (possibly none):
+ on the line. You will perform the following operation some number of times (possibly none): 
 
 select an integer x
 , then for each j
