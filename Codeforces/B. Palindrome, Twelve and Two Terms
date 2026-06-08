@@ -1,0 +1,112 @@
+B. Palindrome, Twelve and Two Terms
+
+You are given a positive integer n
+. A pair of non-negative integers a,b
+ is called beautiful if the following conditions hold:
+
+a+b=n
+.
+The number a
+ is a palindrome.∗
+The number b
+ is divisible by 12
+.
+You need to find a beautiful pair or report that it does not exist.
+
+∗
+A number is called a palindrome if and only if it remains the same when its digits (in decimal notation) are written in reverse order. For example, the numbers 12321
+, 6776
+, 5
+, 0
+ are palindromes, while the numbers 123
+ and 69
+ — are not.
+
+Input
+Each test contains multiple test cases. The first line contains the number of test cases t
+ (1≤t≤104
+). The description of the test cases follows.
+
+The only line of each test case contains a single integer n
+ (1≤n≤1018
+).
+
+Output
+For each test case, if such a
+ and b
+ exist, output a
+ and b
+ on a separate line, separated by a space. Otherwise, output −1
+ on a separate line.
+
+If there are several beautiful pairs a,b
+, you may output any of them.
+
+Example
+InputCopy
+6
+1
+10
+310
+12
+1000000000
+6111111111111111
+OutputCopy
+1 0
+-1
+262 48
+0 12
+889989988 110010012
+111111111111111 6000000000000000
+Note
+In the first test case, a=1
+ is a palindrome, and b=0
+ is divisible by 12
+, and a+b=1=n
+, so the answer satisfies the condition.
+
+In the second test case, it can be shown that no pair a,b
+ is suitable.
+
+In the third test case, a=262
+ is a palindrome, and b=48
+ is divisible by 12
+, and a+b=310=n
+, so the answer satisfies the condition.
+
+
+
+SOLUTION::::
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+
+    while (t--) {
+        long long n;
+        cin >> n;
+
+        if (n == 10) {
+            cout << -1 << '\n';
+            continue;
+        }
+
+        long long r = n % 12;
+        long long a;
+
+        if (r < 10) a = r;
+        else if (r == 11) a = 11;
+        else a = 22; // r == 10
+
+        cout << a << ' ' << (n - a) << '\n';
+    }
+
+    return 0;
+}
