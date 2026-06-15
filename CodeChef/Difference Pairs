@@ -1,0 +1,56 @@
+Difference Pairs
+
+We need to check whether there exists a pair (i, j) such that:
+
+∣A[i]−A[j]∣=B
+Efficient Idea (HashSet)
+Store all array elements in a HashSet.
+For every element x:
+Check if x + B exists in the set.
+Check if x - B exists in the set.
+If either exists, a valid pair is found.
+Otherwise, return 0.
+Time Complexity
+Building HashSet: O(N)
+Checking each element: O(N)
+Total: O(N)
+Space Complexity
+O(N) for the HashSet.
+Java Solution
+import java.util.HashSet;
+
+public class Solution {
+
+    public static int hasPairWithDifference(int[] A, int N, int B) {
+
+        HashSet<Integer> set = new HashSet<>();
+
+        // Store all elements in HashSet
+        for (int i = 0; i < N; i++) {
+            set.add(A[i]);
+        }
+
+        // Check for required difference
+        for (int i = 0; i < N; i++) {
+            if (set.contains(A[i] + B) || set.contains(A[i] - B)) {
+                return 1;
+            }
+        }
+
+        return 0;
+    }
+}
+Example
+
+Input
+
+N = 6, B = 78
+A = [5, 10, 3, 2, 50, 80]
+
+Output
+
+1
+
+Explanation
+
+|80 - 2| = 78, therefore a valid pair exists.
