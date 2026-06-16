@@ -1,0 +1,315 @@
+Draft Picks
+N
+N people are preparing to play a card game. The people are numbered 
+1
+1 to 
+N
+N.
+There are 
+K
+K cards, with exactly one card having strength 
+x
+x for each 
+1
+≤
+x
+≤
+K
+1≤x≤K.
+
+In an attempt to keep things fair, the players decide to pick cards in a snake draft.
+This means the process is as follows:
+
+First, player 
+1
+1 will pick one card, then player 
+2
+2 will pick one card, then player 
+3
+3, and so on until player 
+N
+N picks a card (or all cards have been picked.)
+After all 
+N
+N players have picked one card each, the order reverses: player 
+N
+N will pick a card, then player 
+N
+−
+1
+N−1, and so on until player 
+1
+1.
+After all 
+N
+N players have picked one card each, the order reverses again: so players 
+1
+1 to 
+N
+N will pick their third cards in this order.
+This process of players picking one card each in order from either 
+1
+1 to 
+N
+N or 
+N
+N to 
+1
+1 and then reversing order continues over and over again till all 
+K
+K cards have been picked.
+On their turn, every player will always pick the card with the maximum remaining strength.
+
+The deck strength of a player is defined to be the sum of strengths of all the cards they picked.
+For example, if a player picks three cards with strengths 
+3
+,
+7
+,
+3,7, and 
+11
+11, their deck strength is 
+3
++
+7
++
+11
+=
+21
+3+7+11=21.
+
+After all picks have been made, what is the maximum deck strength any one player has?
+
+Input Format
+The first line of input will contain a single integer 
+T
+T, denoting the number of test cases.
+Each test case consists of a single line of input, containing two space-separated integers 
+N
+N and 
+K
+K.
+Output Format
+For each test case, output on a new line the answer: the maximum deck strength of any one player.
+
+Constraints
+1
+≤
+T
+≤
+10
+4
+1≤T≤10 
+4
+ 
+2
+≤
+N
+≤
+100
+2≤N≤100
+1
+≤
+K
+≤
+100
+1≤K≤100
+Sample 1:
+Input
+Output
+4
+2 2
+3 7
+5 3
+6 20
+2
+10
+3
+37
+Explanation:
+Test case 
+1
+1: There are two players and two cards.
+
+Player 
+1
+1 will choose the card with strength 
+2
+2.
+Player 
+2
+2 will choose the card with strength 
+1
+1.
+Their deck strengths are 
+2
+2 and 
+1
+1 respectively. The largest deck strength is hence 
+2
+2.
+
+Test case 
+2
+2: There are 
+3
+3 players and 
+7
+7 cards. The process is as follows:
+
+The initial direction is forward.
+Player 
+1
+1 will pick card 
+7
+7.
+Player 
+2
+2 will pick card 
+6
+6.
+Player 
+3
+3 will pick card 
+5
+5.
+After all three players have picked, the direction reverses.
+Player 
+3
+3 will pick card 
+4
+4.
+Player 
+2
+2 will pick card 
+3
+3.
+Player 
+1
+1 will pick card 
+2
+2.
+The direction reverses again.
+Player 
+1
+1 will pick card 
+1
+1.
+There are no more cards, so the process ends.
+The deck strengths are:
+
+Player 
+1
+1 picked cards 
+7
+,
+2
+,
+1
+7,2,1 for a total of 
+7
++
+2
++
+1
+=
+10
+7+2+1=10.
+Player 
+2
+2 picked cards 
+6
+,
+3
+6,3 for a total of 
+6
++
+3
+=
+9
+6+3=9.
+Player 
+3
+3 picked cards 
+5
+,
+4
+5,4 for a total of 
+5
++
+4
+=
+9
+5+4=9.
+The maximum deck strength is hence 
+10
+10.
+
+Test case 
+3
+3: There are 
+5
+5 players but only 
+3
+3 cards. Players 
+1
+,
+2
+,
+3
+1,2,3 will pick cards 
+3
+,
+2
+,
+1
+3,2,1 in order and the picking process will end. The largest deck strength is 
+3
+3.
+
+
+SOLUTION:::
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner s=new Scanner(System.in);
+		int t=s.nextInt();
+		while(t-->0){
+		    int n=s.nextInt();
+		    int k=s.nextInt();
+		    int a[]=new int[n];
+	        int x=0,i=0;
+		    while(k>0){
+		        if(x==0){
+		          i=0;
+		        while(i<n && k>0){
+                   a[i]+=k;
+                   k--;
+                   i++;
+		        }
+		        x=1;
+		        }
+		        else{
+		            i=n-1;
+		        while(i>=0 && k>0){
+		            a[i]+=k;
+		            k--;
+		            i--;
+		        }
+		        x=0;
+		        }
+		    }
+		   int m=Integer.MIN_VALUE;
+		    for(int j=0;j<n;j++){
+		        m=Math.max(m,a[j]);
+		    }
+		    System.out.println(m);
+		}
+	}
+}
