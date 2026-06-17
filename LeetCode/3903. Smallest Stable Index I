@@ -1,4 +1,4 @@
-3903. Smallest Stable Index I
+.3903. Smallest Stable Index I
 
 You are given an integer array nums of length n and an integer k.
 For each index i, define its instability score as max(nums[0..i]) - min(nums[i..n - 1]).
@@ -46,15 +46,13 @@ Explanation:
 
 At index 0, the instability score is 0 - 0 = 0, which is less than or equal to k = 0. Therefore, the answer is 0.
 
- 
-
 Constraints:
 
 1 <= nums.length <= 100
 0 <= nums[i] <= 109
 0 <= k <= 109
 
-SOLUTION::
+SOLUTION:::::
 
 class Solution {
     public int firstStableIndex(int[] nums, int k) {
