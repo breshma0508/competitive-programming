@@ -1,0 +1,88 @@
+
+Point Calculation
+Your favourite team participated in the recent FIFA World Cup, and in the group stages, they won 
+A
+A games, drew 
+B
+B games, and lost 
+C
+C games.
+
+How many points did your team score? A win is awarded 
+3
+3 points, a draw awarded 
+1
+1 point, and a loss 
+0
+0 points.
+
+Input Format
+The first and only line contains 
+3
+3 integers - 
+A
+A, 
+B
+B and 
+C
+C.
+Output Format
+Output the number of points won by your team.
+
+Constraints
+0
+≤
+A
+,
+B
+,
+C
+≤
+3
+0≤A,B,C≤3
+A
++
+B
++
+C
+=
+3
+A+B+C=3
+Sample 1:
+Input
+Output
+3 0 0
+9
+Explanation:
+Your team won all their 
+3
+3 games, hence making 
+3
+⋅
+3
+=
+9
+3⋅3=9 points.
+
+Sample 2:
+Input
+Output
+0 1 2
+1
+Explanation:
+Your team drew 
+1
+1 game and lost the others, thus 
+1
+1 point.
+
+SOLUTION :::::
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int a,b,c;
+    cin>>a>>b>>c;
+    cout<<a*3+b;
+}
